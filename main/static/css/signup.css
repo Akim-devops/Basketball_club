@@ -1,0 +1,139 @@
+/* signup.css */
+
+/* Центрируем всё на экране */
+.auth-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 120px 20px 60px; /* Отступ сверху под фиксированное меню */
+    background: radial-gradient(circle at center, #1a100a 0%, var(--bg) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Свечение на фоне */
+.auth-blur-circle {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    filter: blur(120px);
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* Карточка регистрации */
+.auth-card {
+    position: relative;
+    z-index: 1;
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px; /* Чуть шире для сетки */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.auth-subtitle {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    margin-bottom: 5px;
+}
+
+.auth-header h1 {
+    font-size: 1.8rem;
+    font-weight: 900;
+}
+
+.accent-text { color: var(--accent); }
+
+/* СЕТКА ФОРМЫ (то, что ты хотел) */
+.form-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 20px;
+}
+
+.input-group {
+    width: 100%; /* По умолчанию на всю ширину */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.grid-half {
+    width: calc(50% - 10px); /* Рост и Позиция встанут в ряд */
+}
+
+.input-group label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+
+/* СТИЛИЗАЦИЯ ИНПУТОВ DJANGO */
+.input-group input, 
+.input-group select {
+    width: 100%;
+    padding: 14px 18px;
+    background: #111 !important;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: #fff !important;
+    font-size: 0.95rem;
+    transition: 0.3s;
+}
+
+.input-group input:focus, 
+.input-group select:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.2);
+}
+
+/* Кнопка */
+.btn-submit {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 18px;
+    border-radius: 10px;
+    font-weight: 800;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background: var(--primary-orange);
+    transform: translateY(-2px);
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.auth-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 600;
+}

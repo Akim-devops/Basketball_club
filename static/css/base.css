@@ -1,0 +1,178 @@
+/* 1. ТВОИ ОРИГИНАЛЬНЫЕ ЦВЕТА И ОСНОВА */
+:root {
+    --accent: #ff4500;
+    --primary-orange: #ff6b00;
+    --bg: #0a0a0a;
+    --gray: #1a1a1a;
+    --card-bg: #252525;
+    --text: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* 2. НАВИГАЦИЯ (ВОЗВРАЩАЕМ КАК БЫЛО) */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px; /* Увеличили боковые отступы для солидности */
+    
+    /* ФИКСАЦИЯ ПРИ СКРОЛЛЕ */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Чтобы меню было поверх всех блоков */
+    
+    /* ЭФФЕКТ СТЕКЛА (Glassmorphism) */
+    background: rgba(25, 15, 10, 0.75); /* Полупрозрачный фон */
+    backdrop-filter: blur(15px); /* Размытие того, что под меню */
+    -webkit-backdrop-filter: blur(15px);
+    
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Тонкая линия снизу */
+    transition: all 0.4s ease;
+}
+
+/* Логотип */
+.logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-transform: uppercase;
+}
+
+.logo a {
+    font-size: inherit;     /* Берет 1.6rem от родителя .logo */
+    font-weight: inherit;   /* Берет жирность 900 */
+    color: var(--text);     /* Твой белый цвет */
+    text-decoration: none;  /* Убираем подчеркивание */
+    text-transform: uppercase;
+    display: inline-block;  /* Чтобы область клика была четкой */
+}
+
+
+/* Список ссылок */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 40px;
+}
+
+nav a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: var(--accent); /* Твой оранжевый при наведении */
+}
+
+/* --- ---------------------------------------------------- --- */
+/* Личный кабинет */
+.btn-login {
+    border: 2px solid var(--accent) !important;
+    padding: 10px 25px !important;
+    border-radius: 4px;
+    color: #fff !important;
+    background: transparent;
+    transition: all 0.3s ease !important;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.btn-login:hover {
+    background: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.4);
+    transform: translateY(-2px);
+}
+
+/* --- ---------------------------------------------------- --- */
+/* --- ФУТЕР --- */
+
+footer {
+    background: #050505;
+    padding: 80px 50px 30px;
+    margin-top: 100px;
+    border-top: 1px solid #222;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+}
+
+.footer-logo {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--text);
+}
+
+.footer-logo span {
+    color: var(--accent);
+    font-size: 0.8rem;
+    display: block;
+    letter-spacing: 5px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 100px;
+}
+
+.link-group h4 {
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+.link-group a, .link-group p {
+    display: block;
+    color: #777;
+    text-decoration: none;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.link-group a:hover {
+    color: var(--text);
+}
+
+.footer-social a {
+    color: var(--text);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: bold;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #111;
+    padding-top: 30px;
+    color: #444;
+    font-size: 0.8rem;
+}

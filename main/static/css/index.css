@@ -1,0 +1,334 @@
+/* 1. ТВОИ ОРИГИНАЛЬНЫЕ ЦВЕТА И ОСНОВА */
+:root {
+    --accent: #ff4500;
+    --primary-orange: #ff6b00;
+    --bg: #0a0a0a;
+    --gray: #1a1a1a;
+    --card-bg: #252525;
+    --text: #ffffff;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* Чтобы контент хедера не залезал под фиксированное меню */
+header {
+    padding-top: 80px; 
+}
+
+
+header {
+    height: 100vh; /* Растягиваем на весь экран */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 100px;
+    
+    /* ФОТО НА ВСЮ ЗОНУ: 
+       Первый градиент делает левую часть темнее, чтобы текст "горел", 
+       а правая часть остается открытой для фото */
+   background: linear-gradient(180deg, 
+            rgba(10, 10, 10, 1) 0%, 
+            rgba(20, 20, 20, 0.9) 60%, 
+            rgba(255, 107, 0, 0.15) 100%);
+    
+    background-attachment: fixed; /* Эффект параллакса при скролле */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    right: 90px;
+    width: 40%;         /* Занимает ровно правую половину */
+    height: 120%;
+    background: url('../media/бык.png') no-repeat center right / contain;
+    opacity: 0.3;       /* Прозрачность, чтобы вписалось в фон */
+    z-index: 1;         /* Картинка ПОД текстом */
+    pointer-events: none; /* Мышка проходит насквозь к кнопкам */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;         /* Текст ВСЕГДА поверх картинки */
+}
+
+.hero-content {
+    max-width: 900px;
+    z-index: 2;
+}
+
+header h1 {
+    font-size: clamp(3.5rem, 8vw, 6rem); /* Адаптивный размер: огромный на ПК, меньше на мобиле */
+    line-height: 0.9;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    letter-spacing: -2px; /* Плотное, дерзкое начертание */
+}
+
+header p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 550px;
+    margin-bottom: 40px;
+    border-left: 4px solid var(--accent); /* Оранжевая полоса слева от текста */
+    padding-left: 25px;
+}
+
+/* Кнопка со скошенными краями (стиль киберспорт) */
+.cta-btn {
+    padding: 20px 45px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+    transition: 0.3s;
+}
+
+.cta-btn:hover {
+    transform: scale(1.05) skewX(-3deg);
+    background: #ff5500;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.4);
+}
+
+
+/* 4. FEATURES (ВОЗВРАЩАЕМ ТРИ В РЯД) */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Вот тут была поломка */
+    gap: 25px;
+    padding: 60px 50px;
+}
+
+.features .card {
+    background: var(--gray);
+    padding: 35px;
+    border-left: 4px solid var(--accent);
+    transition: 0.3s;
+}
+.features .card:hover { transform: translateY(-10px); background: #222; }
+.features .card h3 { color: var(--accent); margin-bottom: 15px; font-size: 1.4rem; }
+
+/* 5. ЛЕСЕНКА (ROADMAP) — ТЕПЕРЬ ПО ЦЕНТРУ И НЕ ЛОМАЕТ ОСТАЛЬНОЕ */
+.roadmap-container {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--primary-orange);
+    margin-bottom: 60px;
+    text-transform: uppercase;
+}
+
+.roadmap-track {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.progress-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--primary-orange), #ffcc00);
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+/* Настройка шагов */
+.step {
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Чередование сторон без поломки ширины */
+.step:nth-child(odd) { justify-content: flex-start; }
+.step:nth-child(even) { justify-content: flex-end; }
+
+.step-content {
+    width: 44%; /* Оставляем место для линии */
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid #333;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Акцентные линии на карточках лесенки */
+.step:nth-child(odd) .step-content { border-right: 5px solid var(--primary-orange); }
+.step:nth-child(even) .step-content { border-left: 5px solid var(--primary-orange); text-align: right; }
+
+/* Точка на линии */
+.step::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: var(--primary-orange);
+    border: 4px solid var(--bg);
+    border-radius: 50%;
+    left: 50%;
+    top: 30px;
+    transform: translateX(-50%);
+    z-index: 3;
+}
+
+/* 6. ПЕРСОНАЖ */
+.character-preview {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    z-index: 10;
+}
+.rank-badge {
+    background: var(--primary-orange);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255,107,0,0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- СЕКЦИЯ ТРЕНЕРОВ (Переработка под твои стили) --- */
+
+.coaches {
+    padding: 100px 50px;
+    /* Оставляем твой теплый градиент */
+    background: linear-gradient(to bottom, transparent, rgba(255, 69, 0, 0.05));
+}
+
+/* Используем твой grid, он отличный */
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.player-card {
+    background: linear-gradient(135deg, #222, #111);
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 30px 20px; /* Немного увеличил отступы */
+    position: relative;
+    overflow: hidden;
+    transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+}
+
+/* Золотая карточка для Главного тренера */
+.player-card.gold {
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 40px rgba(255, 204, 0, 0.15);
+}
+
+/* Метки HC, TC, FC на заднем фоне */
+.player-rank {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 3rem;
+    font-weight: 900;
+    opacity: 0.05; /* Едва заметно, для стиля */
+    color: #fff;
+}
+
+.player-photo img {
+    width: 100%;
+    height: 280px; /* Чуть выше для статусности */
+    object-fit: contain;
+    filter: grayscale(20%); /* Добавим строгости тренерам */
+    margin-bottom: 20px;
+}
+
+.player-card:hover .player-photo img {
+    filter: grayscale(0%);
+    transform: scale(1.05);
+    transition: 0.4s;
+}
+
+.player-nickname {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #fff; /* Имена белым, чтобы солиднее */
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.player-stats {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    background: rgba(255, 69, 0, 0.1); /* Твой оранжевый, но прозрачный */
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 69, 0, 0.2);
+}
+
+.player-stats span {
+    color: var(--accent); /* Оранжевый акцент на специализации */
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+/* Твой эффект наклона - оставляем, он топ */
+.player-card:hover {
+    transform: translateY(-15px) rotateY(10deg);
+    border-color: var(--accent);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+
+
+
+/* Адаптив для мобилок */
+@media (max-width: 768px) {
+    .players-grid { grid-template-columns: 1fr; }
+    .footer-content { flex-direction: column; gap: 50px; }
+    .footer-links { gap: 40px; flex-wrap: wrap; }
+}
+
+

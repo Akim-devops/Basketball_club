@@ -1,0 +1,86 @@
+.schedule-page { padding: 120px 80px 60px; }
+.schedule-intro { text-align: center; margin-bottom: 80px; }
+.schedule-intro h1 { font-size: 3.5rem; font-weight: 900; }
+
+/* Навигационные плитки */
+.schedule-navigation {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 100px;
+}
+
+.nav-card {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.nav-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 15px 30px rgba(255, 69, 0, 0.2);
+}
+
+.nav-icon { font-size: 2.5rem; }
+.nav-info h3 { color: var(--text); font-weight: 900; font-size: 1.2rem; }
+.nav-info p { color: #777; font-size: 0.8rem; margin-top: 5px; }
+
+.go-btn { margin-left: auto; color: var(--accent); font-weight: 900; }
+
+/* Турниры */
+.tourney-item {
+    background: #111;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    padding: 25px 40px;
+    margin-bottom: 20px;
+    border-left: 5px solid var(--accent);
+}
+
+.item-date { text-align: center; font-weight: 900; padding-right: 30px; border-right: 1px solid #333; margin-right: 30px; }
+.item-date span { display: block; font-size: 2rem; color: var(--accent); }
+
+.btn-reg {
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 900;
+    font-size: 0.8rem;
+    margin-left: auto;
+}
+
+/* Календарь */
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.day-col { background: #0c0c0c; border-radius: 12px; padding: 15px; }
+.day-header { display: flex; justify-content: space-between; margin-bottom: 20px; color: #555; text-transform: uppercase; font-size: 0.7rem; }
+.day-num { color: #fff; font-weight: 900; }
+
+.activity {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: #151515;
+    font-size: 0.75rem;
+}
+
+.activity.physical { border-right: 2px solid var(--accent); }
+.activity.digital { border-right: 2px solid #007bff; }
+.activity h4 { color: #fff; margin-bottom: 3px; }
+.activity p { color: #666; font-size: 0.65rem; }
+.activity .time { color: var(--accent); font-weight: 900; display: block; margin-bottom: 5px; }

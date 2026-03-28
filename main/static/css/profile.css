@@ -1,0 +1,100 @@
+/* Стили Личного Кабинета */
+.lk-container {
+    padding: 120px 80px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.lk-header {
+    background: var(--card-bg);
+    padding: 40px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid var(--accent);
+    margin-bottom: 30px;
+}
+
+.user-info { display: flex; align-items: center; gap: 30px; }
+
+.user-avatar {
+    width: 100px; height: 100px;
+    background: var(--bg);
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+}
+
+.player-number { color: var(--accent); margin-left: 10px; }
+
+.position-tag {
+    background: rgba(255, 69, 0, 0.2);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+}
+
+.lk-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.lk-section {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.section-title-small {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: var(--accent);
+}
+
+.diary-entry {
+    background: var(--bg);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.add-btn {
+    background: transparent;
+    border: 1px dashed var(--accent);
+    color: var(--text);
+    width: 100%;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.add-btn:hover { background: rgba(255, 69, 0, 0.1); }
+
+.rank-number { font-size: 4rem; font-weight: 900; color: #fff; }
+
+.progress-bar {
+    height: 10px;
+    background: var(--bg);
+    border-radius: 5px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-orange), var(--accent));
+}
