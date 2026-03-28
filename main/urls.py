@@ -13,6 +13,8 @@ urlpatterns = [
     path('schedule/', ScheduleView.as_view(), name='schedule'),
     path('knowledge/', KnowledgeView.as_view(), name='knowledge'),
     path('join/', JoinClubView.as_view(), name='join'),
+    path('unlock/', views.unlock_site, name='unlock_site'),
+
 
     path('password-reset/', views.UserPasswordResetView.as_view(), name='password_reset'),
     path('password-reset/done/', views.UserPasswordResetDoneView.as_view(), name='password_reset_done'),

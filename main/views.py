@@ -7,7 +7,8 @@ from .forms import StudentSignUpForm
 from .models import User
 from django.views.generic import UpdateView
 from .forms import UserProfileForm
-
+from django.shortcuts import render, redirect
+import os
 import ssl
 import smtplib
 from django.core.mail.backends.smtp import EmailBackend
@@ -103,3 +104,13 @@ class UserPasswordResetConfirmView(PasswordResetConfirmView):
 class UserPasswordResetCompleteView(PasswordResetCompleteView):
     template_name = 'main/auth/password_reset_complete.html'
 
+def unlock_site(request):
+    if request.method == 'POST':
+        # Берем пароль из .env. Если там пусто, по умолчанию будет '1234'
+        correct_password = os.getenv('SITE_PASSWORD')
+        
+        if request.POST.get('site_password') == correct_password:
+            request.session['site_unlocked'] = True
+            return redirect('home')  # Проверь, что в urls.py главная называется 'home'
+            
+    return render(request, 'unlock.html')
