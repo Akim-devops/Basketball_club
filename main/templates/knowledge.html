@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/knowledge.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="kb-page">
+    <!-- Header -->
+    <header class="kb-header">
+        <div class="kb-blur"></div>
+        <span class="subtitle">Academy of Chita</span>
+        <h1>БАЗА ЗНАНИЙ <br><span class="accent-text">CHITA PHYGITAL</span></h1>
+        <p>От базовой стойки до продвинутых стратегий в NBA2K. Твой путь профессионала начинается здесь.</p>
+        
+        <div class="search-bar">
+            <input type="text" placeholder="Поиск по урокам (например: дриблинг)...">
+            <button>Найти</button>
+        </div>
+    </header>
+
+    <!-- ОСНОВНЫЕ РАЗДЕЛЫ -->
+    <section class="kb-categories">
+        <div class="category-card main-edu">
+            <div class="cat-content">
+                <span class="lvl">Level 01</span>
+                <h3>ОСНОВЫ И ТЕОРИЯ</h3>
+                <p>Правила, разметка, судейские жесты и история игры.</p>
+                <div class="cat-meta">12 уроков • 4 видео</div>
+            </div>
+            <div class="cat-icon">📚</div>
+        </div>
+
+        <div class="category-card skills-edu">
+            <div class="cat-content">
+                <span class="lvl">Level 02</span>
+                <h3>ТЕХНИЧЕСКАЯ ПОДГОТОВКА</h3>
+                <p>Дриблинг, механика броска, постановка заслонов и работа ног.</p>
+                <div class="cat-meta">25 уроков • 10 видео</div>
+            </div>
+            <div class="cat-icon">🏀</div>
+        </div>
+
+        <div class="category-card cyber-edu">
+            <div class="cat-content">
+                <span class="lvl">Special</span>
+                <h3>CYBER STRATEGY</h3>
+                <p>Гайды по NBA2K, управление командой и фиджитал-тактика.</p>
+                <div class="cat-meta">8 уроков • 3 видео</div>
+            </div>
+            <div class="cat-icon">🎮</div>
+        </div>
+    </section>
+
+    <!-- СПИСОК КУРСОВ (Превью уроков) -->
+    <section class="kb-courses">
+        <h2 class="section-title">ПОПУЛЯРНЫЕ <span class="accent-text">УРОКИ</span></h2>
+        
+        <div class="course-list">
+            <!-- Пример урока с видео -->
+            <div class="course-item video-type">
+                <div class="course-preview">
+                    <span class="play-btn">▶</span>
+                    <div class="preview-overlay"></div>
+                </div>
+                <div class="course-body">
+                    <span class="tag">Техника</span>
+                    <h4>Механика идеального броска: 3 точки опоры</h4>
+                    <p>Разбираем положение кисти и локтя при броске с дистанции.</p>
+                    <div class="course-footer">
+                        <span>15 минут</span>
+                        <span>Junior</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пример урока с теорией -->
+            <div class="course-item text-type">
+                <div class="course-preview text-preview">Aa</div>
+                <div class="course-body">
+                    <span class="tag">Тактика</span>
+                    <h4>Заслоны: Pick-and-Roll и Pick-and-Pop</h4>
+                    <p>Теоретическое пособие по взаимодействию двойки на паркете.</p>
+                    <div class="course-footer">
+                        <span>10 стр. текста</span>
+                        <span>Middle</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

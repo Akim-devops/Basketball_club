@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+
+{% block content %}
+    <header>
+	<div class="hero-image"></div> <!-- Место для фото -->
+        <div class="hero-content">
+            <h1>БАСКЕТБОЛЬНЫЙ КЛУБ "ЧИТА"</h1>
+            <p>Новый уровень развития: тренировки на паркете и в киберзоне. Развивайся в двух мирах одновременно.</p>
+            
+            <!-- Заменяем button на a, сохраняя тот же класс -->
+            <a href="{% url 'join' %}" class="cta-btn" style="text-decoration: none; display: inline-block; text-align: center;">
+                Начать тренироваться
+            </a>
+        </div>
+    </header>
+
+    <section class="features">
+        <div class="card">
+            <h3>Дневник спортсмена</h3>
+            <p>Веди учёт своих достижений онлайн.</p>
+        </div>
+        <div class="card">
+            <h3>Дневник тренера</h3>
+            <p>Персональные рекомендации и оценки прогресса в твоем личном кабинете.</p>
+        </div>
+        <div class="card">
+            <h3>Расписание</h3>
+            <p>Умное расписание, уведомления в Telegram и аналитика достижений.</p>
+        </div>
+    </section>
+
+    <!-- ВОТ ЗДЕСЬ НАЧИНАЕТСЯ ЛЕСЕНКА -->
+    <section class="roadmap-container">
+        <h2 class="section-title">Твой путь к вершине</h2>
+        
+        <div class="roadmap-track">
+            <div class="progress-line"></div>
+
+            <!-- Уровень 1 -->
+            <div class="step active">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-label">LEVEL 01</span>
+                        <div class="icon-box">🏀</div>
+                    </div>
+                    <h3>ROOKIE — "Первый мяч"</h3>
+                    <div class="requirements">
+                        <h4>Что требуется:</h4>
+                        <ul>
+                            <li><span>Дриблинг:</span> Уверенное владение мячом</li>
+                            <li><span>Физподготовка:</span> Челночный бег</li>
+                        </ul>
+                    </div>
+                    <div class="milestone"><span class="badge">Цель:</span> Молодежный состав</div>
+                </div>
+            </div>
+
+            <!-- Уровень 2 -->
+            <div class="step active">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-label">LEVEL 02</span>
+                        <div class="icon-box">⚡</div>
+                    </div>
+                    <h3>PLAYER — "Движок команды"</h3>
+                    <div class="requirements">
+                        <h4>Что требуется:</h4>
+                        <ul>
+                            <li><span>Бросок:</span> 60% попаданий</li>
+                            <li><span>Тактика:</span> Pick-and-roll</li>
+                        </ul>
+                    </div>
+                    <div class="milestone"><span class="badge">Цель:</span> Региональные первенства</div>
+                </div>
+            </div>
+
+            <!-- Уровень 3 -->
+            <div class="step active">
+                <div class="step-content">
+                    <div class="step-header">
+                        <span class="step-label">LEVEL 03</span>
+                        <div class="icon-box">🏆</div>
+                    </div>
+                    <h3>ELITE — "Профи БК Чита"</h3>
+                    <div class="requirements">
+                        <h4>Что требуется:</h4>
+                        <ul>
+                            <li><span>IQ игры:</span> Решения за 0.5 сек</li>
+                            <li><span>Атлетизм:</span> Высокий прыжок</li>
+                        </ul>
+                    </div>
+                    <div class="milestone"><span class="badge highlight">Цель:</span> Контракт с основой</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Скрипт для работы анимации (опционально) -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.step').forEach(s => observer.observe(s));
+    </script>
+
+<!-- Секция: ТРЕНЕРСКИЙ СОСТАВ -->
+<section class="coaches">
+    <h2 class="section-title">Тренерский штаб БК ЧИТА</h2>
+    <div class="players-grid">
+        <!-- Тренер 1 (Главный) -->
+        <div class="player-card gold">
+	    <span>Руководитель БК "Чита"</span>
+            <div class="player-rank">HC</div> <!-- Head Coach -->
+            <div class="player-photo">
+                <img src="Снимок.png" alt="Главный тренер">
+            </div>
+            <div class="player-info">
+                <span class="player-nickname">Подъявилов Иван</span>
+                <div class="player-stats">
+                    <span>ОПЫТ: 5 ЛЕТ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Тренер 2 (По технике) -->
+        <div class="player-card gold">
+	    <span>Тренер</span>
+            <div class="player-rank">HC</div> <!-- Head Coach -->
+            <div class="player-photo">
+                <img src="" alt="Главный тренер">
+            </div>
+            <div class="player-info">
+                <span class="player-nickname"></span>
+                <div class="player-stats">
+                    <span>ОПЫТ: 5 ЛЕТ</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Тренер 3 (По физподготовке) -->
+         <div class="player-card gold">
+	    <span>Тренер</span>
+            <div class="player-rank">HC</div> <!-- Head Coach -->
+            <div class="player-photo">
+                <img src="" alt="Главный тренер">
+            </div>
+            <div class="player-info">
+                <span class="player-nickname"></span>
+                <div class="player-stats">
+                    <span>ОПЫТ: 5 ЛЕТ</span>
+                </div>
+            </div>
+        </div>
+</section>
+
+{% endblock %}

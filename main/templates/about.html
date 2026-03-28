@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="about-container">
+    
+    <!-- 1. ИНТРО (Чистый заголовок) -->
+    <section class="intro-section">
+        <div class="container">
+            <span class="reveal-tag">Phygital Generation</span>
+            <h1>МЫ ПИШЕМ НОВУЮ <br><span class="accent-glow">ГЛАВУ БАСКЕТБОЛА</span></h1>
+        </div>
+    </section>
+
+    <!-- 2. ВИЗУАЛЬНЫЙ АКЦЕНТ (БЫК С АУРОЙ) -->
+    <section class="visual-accent-section">
+        <div class="bull-aura-container">
+            <div class="bull-glow"></div> 
+            <div class="bull-image-styled"></div> 
+        </div>
+        <div class="scrolling-line">
+            <span>CHITA PHYGITAL BASKETBALL • CHITA PHYGITAL BASKETBALL • </span>
+        </div>
+    </section>
+
+    <!-- 3. ИСТОРИЯ (Блок 01) -->
+    <section class="story-section">
+        <div class="container grid-2">
+            <div class="story-text">
+                <h2 class="section-label">01. Наша история</h2>
+                <p class="lead-text">Все началось в 2024 году в Чите. Мы увидели, что классический спорт нуждается в цифровой эволюции.</p>
+                <p>Здесь будет твой текст. Мы объединили паркет и консоли, создав первый в регионе фиджитал-хаб. Наша цель — воспитать атлетов, которые одинаково эффективны в обоих мирах.</p>
+            </div>
+            <div class="story-visual">
+                <div class="photo-card">
+                    <!-- Сюда вставишь фото зала через CSS или тег img -->
+                    <div class="photo-placeholder">PHOTO: FIRST TRAINING</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ИНФО-МОСТ (Переходный блок) -->
+    <section class="info-bridge">
+        <div class="container">
+            <div class="bridge-grid">
+                <div class="bridge-item">
+                    <span class="num">01</span>
+                    <h3>ФИЗИКА</h3>
+                    <p>Классические тренировки, выносливость и техника броска на реальном кольце.</p>
+                </div>
+                <div class="bridge-item active">
+                    <span class="num">02</span>
+                    <h3>ЦИФРА</h3>
+                    <p>Тактический разбор в NBA2K, развитие реакции и стратегического мышления.</p>
+                </div>
+                <div class="bridge-item">
+                    <span class="num">03</span>
+                    <h3>РЕЗУЛЬТАТ</h3>
+                    <p>Универсальный атлет, готовый к вызовам фиджитал-турниров любого уровня.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. ФИЛОСОФИЯ (Твой новый блок для будущей инфы) -->
+    <section class="future-info-section">
+        <div class="container">
+            <h2 class="section-label">02. Философия и цели</h2>
+            <div class="wide-content">
+                <h3>МЫ ВЕРИМ В СИЛУ <span class="accent-glow">СООБЩЕСТВА</span></h3>
+                <p>Этот блок зарезервирован под твою информацию. Расскажи о ценностях клуба, миссии или планах на ближайший сезон. Дизайн позволяет разместить здесь большой объем текста без потери стиля.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. КОМАНДА (РОСТЕР) -->
+    <section class="pro-team-section">
+        <div class="container">
+            <div class="team-title-wrap">
+                <h2 class="section-label">03. Команда</h2>
+                <h2>ДЕЙСТВУЮЩИЙ <span class="accent-glow">СОСТАВ</span></h2>
+            </div>
+            
+            <div class="team-cards-container">
+                {% for player in players %}
+                <div class="pro-player-card">
+                    <div class="card-bg-effect"></div>
+                    <div class="player-top">
+                        <span class="p-number">#{{ player.id }}</span>
+                        <span class="p-rank">LVL {{ player.rating }}</span>
+                    </div>
+                    <div class="player-main">
+                    <div class="p-avatar">
+                        {% if player.avatar %}
+                            <img src="{{ player.avatar.url }}" alt="{{ player.username }}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+                        {% else %}
+                            🏀 <!-- Заглушка, если фото не загружено -->
+                        {% endif %}
+                    </div>
+                        <h3>{{ player.username|upper }}</h3>
+                        <p class="p-position">{{ player.get_position_display }}</p>
+                    </div>
+                    <div class="player-footer">
+                        <span>{{ player.height|default:"--" }} CM</span>
+                        <div class="footer-line"></div>
+                        <span>{{ player.weight|default:"--" }} KG</span>
+                    </div>
+                </div>
+                {% empty %}
+                <p>Список игроков пуст</p>
+                {% endfor %}
+            </div>
+
+            {% if is_paginated %}
+            <div class="pro-pagination">
+                {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}" class="p-btn">PREV</a>{% endif %}
+                <span class="p-info">{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}" class="p-btn">NEXT</a>{% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

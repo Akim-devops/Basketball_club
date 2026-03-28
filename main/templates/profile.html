@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+{% block content %}
+    <main class="lk-container">
+        <!-- Блок профиля (Данные из твоей модели User) -->
+        <header class="lk-header">
+            <div class="user-info">
+                <div class="user-avatar">🏀</div>
+                <div class="user-details">
+                    <!-- Выводим Имя Фамилию, если их нет — логин -->
+                    <h1>
+                        {{ user.first_name|default:user.username|upper }} 
+                        <span class="player-number">#{{ user.id }}</span>
+                    </h1>
+                    <!-- Метод get_position_display выведет "Центровой" вместо "C" -->
+                    <p class="position-tag">{{ user.get_position_display }}</p>
+                </div>
+            </div>
+            <div class="user-stats-short">
+                <div class="stat-item"><span>РОСТ:</span> {{ user.height|default:"--" }} см</div>
+                <div class="stat-item"><span>ВЕС:</span> {{ user.weight|default:"--" }} кг</div>
+            </div>
+        </header>
+
+        <div class="lk-grid">
+            <!-- Левая колонка: Дневник -->
+            <section class="lk-section diary-section">
+                <h2 class="section-title-small">Дневник спортсмена</h2>
+                <div class="diary-card">
+                    
+                    <!-- Цикл по записям тренировок (related_name='logs') -->
+                    {% for log in user.logs.all %}
+                        <div class="diary-entry">
+                            <span class="date">{{ log.date|date:"d.m" }}</span>
+                            <div class="entry-text">
+                                <strong>{{ log.title }}</strong>
+                                <p>{{ log.content|truncatechars:60 }}</p>
+                            </div>
+                            <span class="status-done">Выполнено</span>
+                        </div>
+                    {% empty %}
+                        <div style="padding: 40px; text-align: center; opacity: 0.5;">
+                            <p>Записей пока нет. Пора на тренировку!</p>
+                        </div>
+                    {% endfor %}
+
+                    <button class="add-btn">+ Добавить запись</button>
+                </div>
+            </section>
+
+            <!-- Правая колонка: Рейтинг и Прогресс -->
+            <section class="lk-section rating-section">
+                <h2 class="section-title-small">Твой рейтинг</h2>
+                <div class="rating-card">
+                    <div class="rating-value">
+                        <!-- Твое поле rating из модели -->
+                        <span class="rank-number">{{ user.rating }}</span>
+                        <span class="rank-total">баллов в клубе</span>
+                    </div>
+                    
+                    <div class="progress-bar-container">
+                        <p>Прогресс до следующего ранга</p>
+                        <!-- Пример логики: если рейтинг < 100, считаем % -->
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: {{ user.rating }}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>БК ЧИТА</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <a href="{% url 'home' %}">БК ЧИТА</a>
+        </div>
+        <ul>
+            <li><a href="{% url 'about' %}">О клубе</a></li>
+            <li><a href="{% url 'schedule' %}">Расписание</a></li>
+            <li><a href="{% url 'knowledge' %}">База знаний</a></li>
+            {% if user.is_authenticated %}
+            <!-- Ссылка в кабинет с именем игрока -->
+            <li><a href="{% url 'profile' %}" class="btn-login">{{ user.username|upper }}</a></li>
+            <!-- Скрытая форма для безопасного выхода -->
+            <li>
+                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none;">
+                    {% csrf_token %}
+                </form>
+                <a href="#" onclick="document.getElementById('logout-form').submit();" style="opacity: 0.6; font-size: 0.7rem;">ВЫЙТИ</a>
+            </li>
+        {% else %}
+            <!-- Кнопка для тех, кто еще не вошел -->
+            <li><a href="{% url 'login' %}" class="btn-login">Личный кабинет</a></li>
+        {% endif %}
+        </ul>
+    </nav>
+
+ {% block content %}
+ {% endblock %}
+
+ <!-- ФУТЕР  -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">БК ЧИТА <span>PHYGITAL</span></div>
+        <div class="footer-links">
+            <div class="link-group">
+                <h4>Навигация</h4>
+                <a href="#">Тренировки</a>
+                <a href="#">Турниры</a>
+                <a href="#">База</a>
+            </div>
+            <div class="link-group">
+                <h4>Контакты</h4>
+                <p>Чита, ул. Ангарская, 1</p>
+                <p>+7 (999) 000-00-00</p>
+            </div>
+        </div>
+        <div class="footer-social">
+            <a href="https://vk.com/basketclubchita">VK</a>
+            <a href="#">TG</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2024 БК ЧИТА. Все права защищены.
+    </div>
+</footer>
+
+</body>
+</html>

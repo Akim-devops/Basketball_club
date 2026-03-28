@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/schedule.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="schedule-page">
+    <div class="schedule-intro">
+        <span class="subtitle">Calendar 2024</span>
+        <h1>РАСПИСАНИЕ <span class="accent-text">АКТИВНОСТЕЙ</span></h1>
+        <p>Выбери направление, чтобы увидеть детали и забронировать место.</p>
+    </div>
+
+    <!-- ТРИ ГЛАВНЫХ НАПРАВЛЕНИЯ (Кнопки-карточки) -->
+    <section class="schedule-navigation">
+        <a href="#tournaments" class="nav-card tourney-card">
+            <div class="nav-icon">🏆</div>
+            <div class="nav-info">
+                <h3>ТУРНИРЫ</h3>
+                <p>Ближайшие матчи и кубки</p>
+            </div>
+            <span class="go-btn">→</span>
+        </a>
+        <a href="#trainings" class="nav-card training-card">
+            <div class="nav-icon">🏀</div>
+            <div class="nav-info">
+                <h3>ТРЕНИРОВКИ</h3>
+                <p>Работа на паркете в зале</p>
+            </div>
+            <span class="go-btn">→</span>
+        </a>
+        <a href="#digital" class="nav-card cyber-card">
+            <div class="nav-icon">🎮</div>
+            <div class="nav-info">
+                <h3>КИБЕР-СЕССИИ</h3>
+                <p>Разбор тактик и NBA2K</p>
+            </div>
+            <span class="go-btn">→</span>
+        </a>
+    </section>
+
+    <!-- БЛОК 1: БЛИЖАЙШИЕ ТУРНИРЫ (Горизонтальные карточки) -->
+    <section id="tournaments" class="event-section">
+        <h2 class="section-title">ПРЕДСТОЯЩИЕ <span class="accent-text">ТУРНИРЫ</span></h2>
+        <div class="event-list">
+            <div class="tourney-item">
+                <div class="item-date"><span>12</span> АПР</div>
+                <div class="item-main">
+                    <h3>ЧИТИНСКИЙ КУБОК 3х3</h3>
+                    <p>Центральная площадь • Призовой фонд 50 000₽</p>
+                </div>
+                <a href="#" class="btn-reg">РЕГИСТРАЦИЯ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- БЛОК 2: КАЛЕНДАРЬ ТРЕНИРОВОК (Твоя улучшенная лесенка) -->
+    <section id="trainings" class="calendar-section">
+        <h2 class="section-title">НЕДЕЛЬНЫЙ <span class="accent-text">ПЛАН</span></h2>
+        <div class="calendar-grid">
+            {% for day in "1234567" %}
+            <div class="day-col">
+                <header class="day-header">
+                    <span>Пн</span>
+                    <span class="day-num">24.03</span>
+                </header>
+                
+                <div class="activity physical">
+                    <span class="time">18:00</span>
+                    <div class="act-info">
+                        <h4>Базовый дриблинг</h4>
+                        <p>Зал №2 • Группа A</p>
+                    </div>
+                </div>
+                
+                <div class="activity digital">
+                    <span class="time">20:00</span>
+                    <div class="act-info">
+                        <h4>Анализ NBA2K</h4>
+                        <p>Cyber Zone • Pro</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</main>
+{% endblock %}

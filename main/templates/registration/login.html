@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <!-- Подключаем тот же файл стилей, что и для регистрации -->
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-wrapper">
+    <div class="auth-blur-circle"></div>
+    
+    <div class="auth-card">
+        <div class="auth-header">
+            <span class="auth-subtitle">Welcome back</span>
+            <h1>ВХОД В <span class="accent-text">СИСТЕМУ</span></h1>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            
+            <div class="form-grid">
+                {% for field in form %}
+                    <div class="input-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="field-error">{{ field.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        <div class="auth-extra-links" style="margin-bottom: 20px; text-align: right;">
+            <a href="{% url 'password_reset' %}" style="color: var(--accent-color); font-size: 0.9rem; text-decoration: none; opacity: 0.8;">
+                Забыли пароль?
+            </a>
+        </div>
+            <button type="submit" class="btn-submit">
+                <span>ВОЙТИ В КЛУБ</span>
+                <i class="arrow-icon">→</i>
+            </button>
+        </form>
+
+        <div class="auth-footer">
+            <p>Ещё не с нами? <a href="{% url 'signup' %}">Стать игроком</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

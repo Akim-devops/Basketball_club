@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/join.css' %}">
+{% endblock %}
+
+{% block content %}
+<main class="join-page">
+    <div class="light-source"></div> <!-- Мягкое свечение фона -->
+
+    <div class="container">
+        <!-- ВЕРХНИЙ БЛОК: ЗАГОЛОВОК -->
+        <section class="join-intro">
+            <span class="badge">Registration Open</span>
+            <h1>ПРИСОЕДИНЯЙСЯ <br>К <span class="accent-text">КОМАНДЕ</span></h1>
+            <p>Стань частью первого фиджитал-сообщества в Забайкалье. <br>Твой прогресс начинается с первого шага.</p>
+        </section>
+
+        <!-- СРЕДНИЙ БЛОК: КОНТАКТЫ (КАРТОЧКИ) -->
+        <section class="contact-grid">
+            <div class="info-card">
+                <div class="card-icon">📍</div>
+                <h3>ЛОКАЦИЯ</h3>
+                <p>г. Чита, ул. Ангарская, 1<br>СК «Локомотив»</p>
+                <a href="#map-section" class="card-link">Показать на карте</a>
+            </div>
+
+            <div class="info-card featured">
+                <div class="card-icon">📱</div>
+                <h3>СВЯЗЬ</h3>
+                <p>Мы на связи ежедневно <br>с 10:00 до 22:00</p>
+                <div class="social-btns">
+                    <a href="tel:+79990000000" class="call-btn">+7 999 000 0000</a>
+                    <a href="#" class="tg-btn">Telegram</a>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-icon">⚡</div>
+                <h3>ДЛЯ НОВИЧКОВ</h3>
+                <p>Первая тренировка — <br><strong>бесплатно</strong></p>
+                <a href="{% url 'signup' %}" class="card-link">Создать аккаунт</a>
+            </div>
+        </section>
+
+               <!-- НИЖНИЙ БЛОК: ПАНОРАМНАЯ КАРТА -->
+        <section id="map-section" class="map-container">
+            <div class="map-header">
+                <div class="dot"></div>
+                <span>LIVE LOCATION: CHITA, RU</span>
+            </div>
+            <div class="map-frame">
+                <!-- Контейнер для интерактивной карты -->
+                <div id="map" style="width: 100%; height: 400px; background: #111;"></div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<!-- Подключение API Яндекс.Карт версии 2.1 (обязательно через 2.1) -->
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+
+<script type="text/javascript">
+    ymaps.ready(init);
+    function init(){
+        // Проверяем наличие блока, чтобы не было ошибок в консоли
+        var mapElement = document.getElementById('map');
+        if (!mapElement) return;
+
+        var myMap = new ymaps.Map("map", {
+            center: [52.033635, 113.501049], // Координаты Ангарской, 1 в Чите
+            zoom: 16,
+            controls: ['zoomControl', 'fullscreenControl']
+        });
+
+        // Создаем метку
+        var myPlacemark = new ymaps.Placemark([52.033635, 113.501049], {
+            balloonContent: '<strong>БК ЧИТА</strong><br>СК Локомотив, вход с торца',
+            hintContent: 'Ждем тебя на тренировке!'
+        }, {
+            preset: 'islands#orangeDotIcon' // Оранжевая точка в стиле клуба
+        });
+
+        myMap.geoObjects.add(myPlacemark);
+
+        // Применяем фильтр темной темы прямо к контейнеру карты (Senior-фишка)
+        myMap.container.getElement().style.filter = 'invert(90%) hue-rotate(180deg) brightness(1.2)';
+    }
+</script>
+
+{% endblock %}
+
+
